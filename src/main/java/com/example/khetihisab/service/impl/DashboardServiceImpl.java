@@ -24,7 +24,7 @@ public class DashboardServiceImpl implements DashboardService {
         if (fromDate != null && toDate != null && fromDate.isAfter(toDate)) {
             throw new BusinessRuleException("From date cannot be after to date");
         }
-        DashboardSummaryProjection result = dashboardRepository.getSummary(fromDate, toDate)
+        DashboardSummaryProjection result = dashboardRepository.getDashboardSummary(fromDate, toDate)
                 .orElseThrow(() -> new IllegalStateException("Dashboard summary could not be calculated"));
         return new DashboardSummaryResponse(fromDate, toDate, result.getTotalJobs(), result.getCompletedJobs(),
                 result.getPendingJobs(), result.getTotalJobAmount(), result.getPeriodReceived(),
