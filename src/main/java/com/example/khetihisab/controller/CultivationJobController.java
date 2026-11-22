@@ -9,7 +9,6 @@ import com.example.khetihisab.service.CultivationJobService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,6 @@ import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/api/v1/jobs")
-@Profile("database")
 @Tag(name = "Cultivation Jobs", description = "Cultivation job management APIs")
 public class CultivationJobController {
 

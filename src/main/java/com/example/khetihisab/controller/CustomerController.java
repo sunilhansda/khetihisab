@@ -5,9 +5,9 @@ import com.example.khetihisab.dto.customer.CustomerResponse;
 import com.example.khetihisab.dto.customer.UpdateCustomerRequest;
 import com.example.khetihisab.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/customers")
-@Profile("database")
 @Tag(name = "Customers", description = "Customer management APIs")
 public class CustomerController {
 
@@ -43,7 +42,9 @@ public class CustomerController {
 
     @GetMapping("/{customerId}")
     @Operation(summary = "Get customer by ID")
-    public ResponseEntity<CustomerResponse> getCustomer(@PathVariable Long customerId) {
+    public ResponseEntity<CustomerResponse> getCustomer(
+            @Parameter(description = "Unique customer ID", example = "1")
+            @PathVariable Long customerId) {
         return ResponseEntity.ok(customerService.getCustomer(customerId));
     }
 
